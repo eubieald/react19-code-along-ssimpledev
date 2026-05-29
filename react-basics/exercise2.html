@@ -1,0 +1,83 @@
+<!-- 
+  A Component is a reusable piece of code that represents a part of a user interface.
+  A props is a way to pass data from a parent component to a child component.
+  -->
+
+<!doctype html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const LoginForm = () => {
+        const [toggleOnValue, setToggleOnValue] = React.useState(false);
+        const toggleOn = React.useRef(null);
+        const passwordInput = React.useRef(null);
+
+        React.useEffect(() => {
+          if (toggleOnValue) {
+            toggleOn.current.innerHTML = "Hide";
+            toggleOn.current.style.backgroundColor = "red";
+            passwordInput.current.type = "text";
+          } else {
+            toggleOn.current.innerHTML = "Show";
+            toggleOn.current.style.backgroundColor = "green";
+            passwordInput.current.type = "password";
+          }
+        }, [toggleOnValue]);
+
+        return (
+          <form>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <input
+                style={{ width: "200px" }}
+                type="text"
+                placeholder="Username"
+              />
+              <div style={{ display: "flex", gap: "10px" }}>
+                <input
+                  ref={passwordInput}
+                  style={{ width: "200px" }}
+                  type="password"
+                  placeholder="Password"
+                />
+                <button
+                  style={{
+                    width: "50px",
+                    backgroundColor: "green",
+                    color: "white",
+                    border: "none",
+                  }}
+                  type="button"
+                  onClick={() => setToggleOnValue(!toggleOnValue)}
+                  ref={toggleOn}
+                >
+                  On
+                </button>
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+              <button type="submit">Login</button>
+              <button type="signup">Signup</button>
+            </div>
+          </form>
+        );
+      };
+
+      const App = () => {
+        return <LoginForm />;
+      };
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

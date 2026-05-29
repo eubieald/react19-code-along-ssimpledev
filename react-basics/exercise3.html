@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Counter</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      function Counter({ count, setCount }) {
+        function handleClick() {
+          setCount((prev) => prev + 1);
+        }
+
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "10px",
+              minWidth: "200px",
+            }}
+          >
+            <button onClick={handleClick}>
+              Clicked {count} {count === 1 ? "time" : "times"}
+            </button>
+          </div>
+        );
+      }
+
+      function FormRealTime({
+        inputValue,
+        setInputValue,
+        helloValue,
+        setHelloValue,
+        realtimeEnabled,
+      }) {
+        function handleChange(event) {
+          const newValue = event.target.value;
+
+          // always update input
+          setInputValue(newValue);
+
+          // only update Hello in realtime mode
+          if (realtimeEnabled) {
+            setHelloValue(newValue);
+          }
+        }
+
+        return (
+          <div>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="Type your name"
+            />
+
+            <p>Hello {helloValue}</p>
+
+            <p>Mode: {realtimeEnabled ? "Realtime Typing" : "Example Mode"}</p>
+          </div>
+        );
+      }
+
+      function ResetButton({ onReset }) {
+        return <button onClick={onReset}>Reset</button>;
+      }
+
+      function ExampleButton({ onClick }) {
+        return <button onClick={onClick}>Example</button>;
+      }
+
+      function RealtimeButton({ onClick }) {
+        return <button onClick={onClick}>Enable Realtime</button>;
+      }
+
+      function App() {
+        // counters
+        const [count1, setCount1] = React.useState(0);
+        const [count2, setCount2] = React.useState(0);
+        const [sameCount, setSameCount] = React.useState(0);
+
+        // input value
+        const [inputValue, setInputValue] = React.useState("");
+
+         const [helloValue, setHelloValue] = React.useState("");
+
+        // mode control
+        const [realtimeEnabled, setRealtimeEnabled] = React.useState(true);
+
+        function handleExample() {
+          // stop realtime updates
+          setRealtimeEnabled(false);
+
+          // freeze current typed value
+          setHelloValue(inputValue);
+        }
+
+        function handleEnableRealtime() {
+          setRealtimeEnabled(true);
+
+          // sync current input immediately
+          setHelloValue(inputValue);
+        }
+
+        function handleReset() {
+          // reset counters
+          setCount1(0);
+          setCount2(0);
+          setSameCount(0);
+
+          // reset form
+          setInputValue("");
+          setHelloValue("");
+
+          // reset mode
+          setRealtimeEnabled(true);
+        }
+
+        return (
+          <>
+            {/* Counters */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                marginBottom: "20px",
+              }}
+            >
+              <Counter count={count1} setCount={setCount1} />
+
+              <Counter count={count2} setCount={setCount2} />
+
+              <Counter count={sameCount} setCount={setSameCount} />
+
+              <Counter count={sameCount} setCount={setSameCount} />
+            </div>
+
+            {/* Form */}
+            <FormRealTime
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              helloValue={helloValue}
+              setHelloValue={setHelloValue}
+              realtimeEnabled={realtimeEnabled}
+            />
+
+            {/* Buttons */}
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "10px",
+              }}
+            >
+              <ExampleButton onClick={handleExample} />
+
+              <RealtimeButton onClick={handleEnableRealtime} />
+
+              <ResetButton onReset={handleReset} />
+            </div>
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      root.render(<App />);
+    </script>
+  </body>
+</html>

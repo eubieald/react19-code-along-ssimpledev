@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      const container = document.querySelector(".js-container");
+
+      // Create root
+      const root = ReactDOM.createRoot(container);
+
+      const goodJobBtn = <button>Good job!</button>;
+
+      const name = "Yubi";
+      const myNameParagraph = <p>My name is {name}</p>;
+
+      const socks = 10;
+      const tshirt = 8;
+
+      const productCost = socks + tshirt * 2;
+      const shippingCost = 5;
+
+      const Product = ({ name, price }) => (
+        <div>
+          <h3>{name}</h3>
+          <p>Price: ${price}</p>
+        </div>
+      );
+
+      const sidebar = (
+        <aside style={{ marginLeft: "auto" }}>
+          <Product name="Cotton socks" price={socks} />
+          <Product name="Cotton t-shirt" price={tshirt} />
+
+          <h2>Shipping cost: ${shippingCost}</h2>
+          <h2>Product cost: ${productCost}</h2>
+
+          <button>Place order</button>
+        </aside>
+      );
+
+      function renderApp() {
+        root.render(
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            <p>Today is {dayjs().format("MMMM D")}</p>
+
+            <p>Current time is {dayjs().format("HH:mm:ss")}</p>
+
+            {goodJobBtn}
+            {myNameParagraph}
+            {sidebar}
+          </div>,
+        );
+      }
+
+      // Initial render
+      renderApp();
+
+      // Update every second
+      setInterval(renderApp, 1000);
+    </script>
+  </body>
+</html>

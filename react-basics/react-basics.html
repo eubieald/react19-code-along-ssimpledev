@@ -1,0 +1,47 @@
+<!-- WHAT IS REACT? -->
+<!-- 
+  React is an external library that we can use to build user interfaces.
+   What is an external library?
+   - An external library is a collection of pre-written code that developers can use to perform common tasks or add functionality to their applications without having to write the code from scratch.
+    External libraries are typically created and maintained by third-party developers and can be easily integrated into projects to save time and effort. 
+    Examples of popular external libraries include React, jQuery, and Lodash.
+
+  HTML code creates a website.
+  CSS code styles the website.
+  JavaScript code adds interactivity to the website.
+
+  There are bunch of ways to load JavaScript into a website,
+   but the most common way is to use a <script> tag in the HTML file. example:
+    <script>console.log("Hello world!");</script>
+   
+    Another way is to create an external JavaScript file and link it to the HTML file using the <script> tag with the src attribute. example:
+    <script src="path/to/your/script.js"></script>
+
+    Another way is to use a CDN (Content Delivery Network) to load JavaScript files from a remote server. example:
+    <script src="https://cdn.example.com/script.js"></script>
+
+    Another way is to use a JavaScript framework, 
+    such as React, Vue, or Angular, to build user interfaces.
+
+ -->
+
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(
+        <h1>Welcome to SuperSimpleDev React Course</h1>,
+      );
+    </script>
+  </body> 
+</html>
