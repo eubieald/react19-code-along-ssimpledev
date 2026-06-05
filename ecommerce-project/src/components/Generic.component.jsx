@@ -26,6 +26,10 @@ export const GenericPageTitle = ({ className = "", children = null }) => {
   return <h1 className={`generic-page-title ${className}`}>{children}</h1>;
 };
 
+export const GenericLabel = ({ className = "", children = null }) => {
+  return <label className={`generic-label ${className}`}>{children}</label>;
+};
+
 export const GenericLink = ({
   href = "#",
   className = "",

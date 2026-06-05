@@ -34,3 +34,13 @@ export const ProductQuantityContainer = ({
     <div className={`product-quantity-container ${className}`}>{children}</div>
   );
 };
+
+export const ProductDetails = ({ className = "", children = null }) => {
+  return <div className={`product-details ${className}`}>{children}</div>;
+};
+
+export const ProductActions = ({ className = "", children = null }) => {
+  return <div className={`product-actions ${className}`}>{children}</div>;
+};
+
+
