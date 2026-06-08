@@ -1,3 +1,5 @@
+import { Link, NavLink } from "react-router";
+
 export const GenericBlock = ({ className = "", children = null }) => {
   return <div className={`generic-block ${className}`}>{children}</div>;
 };
@@ -36,8 +38,23 @@ export const GenericLink = ({
   children = null,
 }) => {
   return (
-    <a href={href} className={`${className}`}>
+    // We need to use Link component from react-router instead of anchor tag
+    // to prevent page reloads and enable client-side routing
+    <Link to={`/${href}`} className={`${className}`}>
       {children}
-    </a>
+    </Link>
+  );
+};
+
+export const GenericNavLink = ({
+  href = "#",
+  className = "",
+  children = null,
+}) => {
+  return (
+    // We need to use NavLink component to apply active class to the link when it's active
+    <NavLink to={`/${href}`} className={`${className}`}>
+      {children}
+    </NavLink>
   );
 };

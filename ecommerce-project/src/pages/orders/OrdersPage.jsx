@@ -1,24 +1,13 @@
 import {
-  MainHeaderComponent,
-  MainHeaderLeftSection,
-  MainHeaderMiddleSection,
-  HeaderRightSection,
-} from "../components/Header.component";
-import {
   GenericBlock,
   GenericLeftColumn,
   GenericLink,
   GenericPageTitle,
   GenericLabel,
   GenericRightColumn,
-} from "../components/Generic.component";
-import { GenericFormInput } from "../components/FormInput.component";
-import { GenericButton } from "../components/Button.component";
+} from "../../components/Generic.component";
+import { GenericButton } from "../../components/Button.component";
 
-import logo from "../assets/logo-white.png";
-import mobileLogo from "../assets/mobile-logo-white.png";
-import cartIcon from "../assets/icons/cart-icon.png";
-import searchIcon from "../assets/icons/search-icon.png";
 import {
   OrderDetailsGrid,
   OrdersComponent,
@@ -26,48 +15,27 @@ import {
   OrdersGrid,
   OrdersHeader,
   OrderTotal,
-} from "../components/Orders.component";
+} from "../../components/Orders.component";
 import {
   ProductActions,
   ProductDetails,
   ProductImage,
   ProductName,
   ProductQuantityContainer,
-} from "../components/Product.component";
-import athleticSocksImage from "../assets/products/athletic-cotton-socks-6-pairs.jpg";
-import buyAgainIcon from "../assets/icons/buy-again.png";
-import plainTshirtImage from "../assets/products/adults-plain-cotton-tshirt-2-pack-teal.jpg";
+} from "../../components/Product.component";
+import plainTshirtImage from "../../assets/images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg";
+import athleticSocksImage from "../../assets/images/products/athletic-cotton-socks-6-pairs.jpg";
+import buyAgainIcon from "../../assets/icons/buy-again.png";
 import "./orders.css";
+import { MainHeaderComposite } from "../../components/Header.composite";
 
 export default function OrdersPage() {
   return (
     <>
+      <link rel="icon" type="image/svg+xml" href="/orders-favicon.png" />
       <title>Orders</title>
       <>
-        <MainHeaderComponent>
-          <MainHeaderLeftSection>
-            <GenericLink href="index.html">
-              <img className="logo" src={logo} />
-              <img className="mobile-logo" src={mobileLogo} />
-            </GenericLink>
-          </MainHeaderLeftSection>
-          <MainHeaderMiddleSection>
-            <GenericFormInput className="search-bar" placeholder="Search" />
-            <GenericButton className="search-button">
-              <img className="search-icon" src={searchIcon} />
-            </GenericButton>
-          </MainHeaderMiddleSection>
-          <HeaderRightSection>
-            <GenericLink className="orders-link header-link" href="orders.html">
-              <span className="orders-text">Orders</span>
-            </GenericLink>
-            <GenericLink className="cart-link header-link" href="cart.html">
-              <img className="cart-icon" src={cartIcon} />
-              <div className="cart-quantity">3</div>
-              <div className="cart-text">Cart</div>
-            </GenericLink>
-          </HeaderRightSection>
-        </MainHeaderComponent>
+        <MainHeaderComposite />
 
         <OrdersComponent>
           <GenericPageTitle>Your Orders</GenericPageTitle>
@@ -123,7 +91,7 @@ export default function OrdersPage() {
                 </ProductDetails>
 
                 <ProductActions>
-                  <GenericLink href="tracking.html">
+                  <GenericLink href="tracking">
                     <GenericButton className="track-package-button button-secondary">
                       Track package
                     </GenericButton>
@@ -181,7 +149,7 @@ export default function OrdersPage() {
                 </ProductDetails>
 
                 <ProductActions>
-                  <GenericLink href="tracking.html">
+                  <GenericLink href="tracking">
                     <GenericButton className="track-package-button button-secondary">
                       Track package
                     </GenericButton>
@@ -209,7 +177,7 @@ export default function OrdersPage() {
                 </ProductDetails>
 
                 <ProductActions>
-                  <GenericLink href="tracking.html">
+                  <GenericLink href="tracking">
                     <GenericButton className="track-package-button button-secondary">
                       Track package
                     </GenericButton>
